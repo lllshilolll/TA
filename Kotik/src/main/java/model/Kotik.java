@@ -10,7 +10,7 @@ public class Kotik {
     private static int count;
 
     public Kotik() {
-    count++;
+        count++;
     }
 
     public Kotik(int prettiness, int weight, String name, String meow) {
@@ -30,54 +30,56 @@ public class Kotik {
         foodWeight = 0;
     }
 
-    public boolean play() {
+    public boolean isAlive() {
         if (foodWeight <= 0) {
-            System.out.println("Кот голодный, покорми кота!");
             return false;
+        }
+        return true;
+    }
+
+
+    public void play() {
+        if (isAlive() == false) {
+            System.out.println("Кот голодный, покорми кота!");
+            eat();
         } else {
             foodWeight = foodWeight - 5;
             System.out.println("Кот играет");
-            return true;
         }
     }
 
-    public boolean sleep() {
-        if (foodWeight <= 0) {
+    public void sleep() {
+        if (isAlive() == false) {
             System.out.println("Кот голодный, покорми кота!");
-            return false;
+            eat();
+        } else {
+            foodWeight = foodWeight - 1;
+            System.out.println("Кот спит");
         }
-        else{
-        foodWeight = foodWeight - 1;
-        System.out.println("Кот спит");
-        return true;}
     }
 
-    public boolean chaseMouse() {
-        if (foodWeight <= 0) {
+    public void chaseMouse() {
+        if (isAlive() == false) {
             System.out.println("Кот голодный, покорми кота!");
-            return false;
-        }
-        else {
+            eat();
+        } else {
             foodWeight = foodWeight - 2;
             System.out.println("Кот поймал мышку");
-            return true;
         }
     }
 
-    public boolean pee() {
-        if (foodWeight <= 0)
-        {
+    public void pee() {
+        if (isAlive() == false) {
             System.out.println("Кот голодный, покорми кота!");
-            return false;
-        }
-        else {
+            eat();
+        } else {
             foodWeight = foodWeight - 2;
             System.out.println("Кот сходил в туалет");
-            return true;
         }
     }
+
     public void drink() {
-        foodWeight = foodWeight + 10;
+        foodWeight = foodWeight + 5;
         System.out.println("Кот попил");
     }
 
@@ -98,7 +100,7 @@ public class Kotik {
     public void liveAnotherDay() {
         for (int i = 0; i < 24; i++) {
             //рандомное число от 1 до 6
-            int rand = (int) (Math.random() * 6) + 1;
+            int rand = (int) (Math.random() * 5) + 1;
             switch (rand) {
                 case 1:
                     play();
@@ -110,17 +112,14 @@ public class Kotik {
                     chaseMouse();
                     break;
                 case 4:
-                    eat();
-                    break;
-                case 5:
                     pee();
                     break;
-                case 6:
+                case 5:
                     drink();
                     break;
             }
-
         }
+
     }
 
     public static int getCount() {
