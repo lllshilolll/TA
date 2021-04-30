@@ -1,7 +1,6 @@
 package animal;
 
 public class Bear extends Carnivorous implements Swim, Run {
-
     public Bear(String name) {
         super(name);
     }

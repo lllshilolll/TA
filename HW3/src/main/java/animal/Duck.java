@@ -1,6 +1,7 @@
 package animal;
 
 public class Duck extends Herbivore implements Swim, Fly {
+
     public Duck(String name) {
         super(name);
     }

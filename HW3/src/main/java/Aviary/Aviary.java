@@ -1,9 +1,11 @@
 package Aviary;
 
+import animal.Animal;
 import java.util.HashMap;
 
-public class Aviary<T> {
+public class Aviary<T extends Animal> {
     private SizeAviary sizeAviary;
+    private final HashMap<String, T> mapAnimals = new HashMap<>();
 
     public Aviary(SizeAviary sizeAviary) {
         this.sizeAviary = sizeAviary;
@@ -13,20 +15,14 @@ public class Aviary<T> {
         sizeAviary = sizeAviary.MEDIUM;
     }
 
-    private final HashMap<String, T> mapAnimals = new HashMap<>();
-
-    public void addAnimalInAviary(String name, T animal, SizeAviary sizeAviary) {
+    public void addAnimal(String name, T animal, SizeAviary sizeAviary) {
         if (this.sizeAviary == sizeAviary) {
             mapAnimals.put(name, animal);
         }
     }
 
-    public void deleteAnimalInAviary(String name) {
+    public void deleteAnimal(String name) {
         mapAnimals.remove(name);
-    }
-
-    public T getAnimal(String name) {
-        return mapAnimals.get(name);
     }
 
     public void printAnimals() {
@@ -34,4 +30,13 @@ public class Aviary<T> {
             System.out.println(name + " " + getAnimal(name));
         }
     }
+    public T getAnimal(String name) {
+        return mapAnimals.get(name);
+    }
+
+    public String getSizeAviary ()
+    {
+        return sizeAviary.name();
+    }
+
 }

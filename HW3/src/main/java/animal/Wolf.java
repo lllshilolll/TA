@@ -1,6 +1,7 @@
 package animal;
 
 public class Wolf extends Carnivorous implements Run, Voice {
+
     public Wolf(String name) {
         super(name);
     }

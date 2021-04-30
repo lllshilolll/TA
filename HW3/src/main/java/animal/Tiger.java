@@ -1,8 +1,13 @@
 package animal;
 
+import Aviary.SizeAviary;
+
 public class Tiger extends Carnivorous implements Swim, Run {
+    SizeAviary sizeAviary;
+
     public Tiger(String name) {
         super(name);
+        sizeAviary = SizeAviary.HUGE;
     }
 
     @Override

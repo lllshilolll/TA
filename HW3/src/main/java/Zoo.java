@@ -29,18 +29,19 @@ public class Zoo {
 
         Aviary<Herbivore> aviaryHerb = new Aviary<Herbivore>();
         Aviary<Carnivorous> aviaryCarn = new Aviary<Carnivorous>();
-        aviaryHerb.addAnimalInAviary(bird.getName(), bird, bird.getSizeAviary());
-        aviaryHerb.addAnimalInAviary(duck.getName(), duck, duck.getSizeAviary());
-        aviaryHerb.addAnimalInAviary(fish.getName(), fish, fish.getSizeAviary());
-        aviaryCarn.addAnimalInAviary(bear.getName(), bear, bear.getSizeAviary());
-        aviaryCarn.addAnimalInAviary(tiger.getName(), tiger, tiger.getSizeAviary());
-        aviaryCarn.addAnimalInAviary(wolf.getName(), wolf, wolf.getSizeAviary());
+
+        aviaryHerb.addAnimal(bird.getName(), bird, bird.getSizeAviary());
+        aviaryHerb.addAnimal(duck.getName(), duck, duck.getSizeAviary());
+        aviaryHerb.addAnimal(fish.getName(), fish, fish.getSizeAviary());
+        aviaryCarn.addAnimal(bear.getName(), bear, bear.getSizeAviary());
+        aviaryCarn.addAnimal(tiger.getName(), tiger, tiger.getSizeAviary());
+        aviaryCarn.addAnimal(wolf.getName(), wolf, wolf.getSizeAviary());
 
         aviaryHerb.printAnimals();
         System.out.println("\n");
         aviaryCarn.printAnimals();
         System.out.println("\n");
-        aviaryCarn.deleteAnimalInAviary("Мишка");
+        aviaryCarn.deleteAnimal("Мишка");
         aviaryCarn.printAnimals();
 
         Animal[] pool = {bear, duck, fish, tiger};
