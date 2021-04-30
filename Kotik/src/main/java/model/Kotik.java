@@ -6,7 +6,7 @@ public class Kotik {
     private String name;
     private String meow;
     //числовая переменная экземпляра показывающая степень сытости котика
-    private int foodWeight;
+    private int satiety;
     private static int count;
 
     public Kotik() {
@@ -18,7 +18,7 @@ public class Kotik {
         this.weight = weight;
         this.name = name;
         this.meow = meow;
-        foodWeight = 0;
+        satiety = 0;
         count++;
     }
 
@@ -27,59 +27,52 @@ public class Kotik {
         this.weight = weight;
         this.name = name;
         this.meow = meow;
-        foodWeight = 0;
+        satiety = 0;
     }
 
-    public boolean isAlive() {
-        if (foodWeight <= 0) {
-            return false;
-        }
-        return true;
+    public boolean isHungry() {
+        System.out.println("Кот голодный, покорми кота!");
+        return false;
     }
 
-
-    public void play() {
-        if (isAlive() == false) {
-            System.out.println("Кот голодный, покорми кота!");
-            eat();
-        } else {
-            foodWeight = foodWeight - 5;
+    public boolean play() {
+        if (satiety > 0) {
+            satiety = satiety - 5;
             System.out.println("Кот играет");
+            return true;
         }
+        return (isHungry());
     }
 
-    public void sleep() {
-        if (isAlive() == false) {
-            System.out.println("Кот голодный, покорми кота!");
-            eat();
-        } else {
-            foodWeight = foodWeight - 1;
+    public boolean sleep() {
+        if (satiety > 0) {
+            satiety = satiety - 1;
             System.out.println("Кот спит");
+            return true;
         }
+        return (isHungry());
     }
 
-    public void chaseMouse() {
-        if (isAlive() == false) {
-            System.out.println("Кот голодный, покорми кота!");
-            eat();
-        } else {
-            foodWeight = foodWeight - 2;
+    public boolean chaseMouse() {
+        if (satiety > 0) {
+            satiety = satiety - 2;
             System.out.println("Кот поймал мышку");
+            return true;
         }
+        return (isHungry());
     }
 
-    public void pee() {
-        if (isAlive() == false) {
-            System.out.println("Кот голодный, покорми кота!");
-            eat();
-        } else {
-            foodWeight = foodWeight - 2;
+    public boolean pee() {
+        if (satiety > 0) {
+            satiety = satiety - 2;
             System.out.println("Кот сходил в туалет");
+            return true;
         }
+        return (isHungry());
     }
 
     public void drink() {
-        foodWeight = foodWeight + 5;
+        satiety = satiety + 5;
         System.out.println("Кот попил");
     }
 
@@ -88,19 +81,19 @@ public class Kotik {
     }
 
     public void eat(int amount) {
-        foodWeight = foodWeight + amount;
+        satiety = satiety + amount;
         System.out.println("Кот поел " + amount + " еды");
     }
 
     public void eat(int amount, String food) {
-        foodWeight = foodWeight + amount;
+        satiety = satiety + amount;
         System.out.println("Кот поел " + amount + " " + food);
     }
 
     public void liveAnotherDay() {
         for (int i = 0; i < 24; i++) {
             //рандомное число от 1 до 6
-            int rand = (int) (Math.random() * 5) + 1;
+            int rand = (int) (Math.random() * 6) + 1;
             switch (rand) {
                 case 1:
                     play();
@@ -116,6 +109,9 @@ public class Kotik {
                     break;
                 case 5:
                     drink();
+                    break;
+                case 6:
+                    eat();
                     break;
             }
         }
@@ -142,8 +138,8 @@ public class Kotik {
         return meow;
     }
 
-    public int getFoodWeight() {
-        return foodWeight;
+    public int getSatiety() {
+        return satiety;
     }
 }
 
