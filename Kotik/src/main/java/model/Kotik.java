@@ -30,45 +30,44 @@ public class Kotik {
         satiety = 0;
     }
 
-    public boolean isHungry() {
-        System.out.println("Кот голодный, покорми кота!");
-        return false;
-    }
-
     public boolean play() {
-        if (satiety > 0) {
-            satiety = satiety - 5;
-            System.out.println("Кот играет");
-            return true;
+        if (satiety <= 0) {
+            System.out.println("Кот голодный, покорми кота!");
+            return false;
         }
-        return (isHungry());
+        satiety = satiety - 5;
+        System.out.println("Кот играет");
+        return true;
     }
 
     public boolean sleep() {
-        if (satiety > 0) {
-            satiety = satiety - 1;
-            System.out.println("Кот спит");
-            return true;
+        if (satiety <= 0) {
+            System.out.println("Кот голодный, покорми кота!");
+            return false;
         }
-        return (isHungry());
+        satiety = satiety - 1;
+        System.out.println("Кот спит");
+        return true;
     }
 
     public boolean chaseMouse() {
-        if (satiety > 0) {
-            satiety = satiety - 2;
-            System.out.println("Кот поймал мышку");
-            return true;
+        if (satiety <= 0) {
+            System.out.println("Кот голодный, покорми кота!");
+            return false;
         }
-        return (isHungry());
+        satiety = satiety - 2;
+        System.out.println("Кот поймал мышку");
+        return true;
     }
 
     public boolean pee() {
-        if (satiety > 0) {
-            satiety = satiety - 2;
-            System.out.println("Кот сходил в туалет");
-            return true;
+        if (satiety <= 0) {
+            System.out.println("Кот голодный, покорми кота!");
+            return false;
         }
-        return (isHungry());
+        satiety = satiety - 2;
+        System.out.println("Кот сходил в туалет");
+        return true;
     }
 
     public void drink() {
