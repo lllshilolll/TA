@@ -9,7 +9,7 @@ abstract public class Herbivore extends Animal {
     }
 
     public void eat(Food food) {
-        if (food instanceof Grass == false) {
+        if (!(food instanceof Grass)) {
             System.out.println(getName() + " должн есть траву!");
             return;
         }
