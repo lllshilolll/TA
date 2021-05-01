@@ -30,7 +30,8 @@ public abstract class Animal {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
         Animal animal = (Animal) obj;
-        return this.name.equals(animal.getName());    }
+        return this.name.equals(animal.getName());
+    }
 
     @Override
     public int hashCode() {
