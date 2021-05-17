@@ -6,8 +6,7 @@ public class Tiger extends Carnivorous implements Swim, Run {
     SizeAviary sizeAviary;
 
     public Tiger(String name) {
-        super(name);
-        sizeAviary = SizeAviary.HUGE;
+        super(name, 3);
     }
 
     @Override

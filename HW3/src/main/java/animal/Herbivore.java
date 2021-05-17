@@ -6,12 +6,12 @@ import food.WrongFoodException;
 
 abstract public class Herbivore extends Animal {
 
-    public Herbivore(String name) {
-        super(name);
+    public Herbivore(String name, int size) {
+        super(name, size);
     }
 
     public void eat(Food food) throws WrongFoodException {
-        if (food instanceof Grass) throw new WrongFoodException(getName() + " должн есть траву!");
+        if (!(food instanceof Grass)) throw new WrongFoodException(getName() + " должн есть траву!");
         System.out.println(getName() + " cъел " + food.getFood());
     }
 }

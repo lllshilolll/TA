@@ -3,7 +3,7 @@ package animal;
 public class Bird extends Herbivore implements Fly, Voice {
 
     public Bird(String name) {
-        super(name);
+        super(name, 1);
     }
 
     @Override

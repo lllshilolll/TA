@@ -1,6 +1,5 @@
 package animal;
 
-import Aviary.SizeAviary;
 import food.Food;
 import food.WrongFoodException;
 
@@ -8,11 +7,12 @@ import java.util.Objects;
 
 public abstract class Animal {
     String name;
-    SizeAviary sizeAviary;
+    protected int size;
 
-    public Animal(String name) {
+
+    public Animal(String name, int size) {
         this.name = name;
-        sizeAviary = SizeAviary.MEDIUM;
+        this.size = size;
     }
 
     public abstract void eat(Food food) throws WrongFoodException;
@@ -21,8 +21,8 @@ public abstract class Animal {
         return name;
     }
 
-    public SizeAviary getSizeAviary() {
-        return sizeAviary;
+    public int getSize() {
+        return size;
     }
 
     @Override

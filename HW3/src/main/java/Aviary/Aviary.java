@@ -1,23 +1,44 @@
 package Aviary;
 
 import animal.Animal;
+import animal.Carnivorous;
+import animal.Herbivore;
+
 import java.util.HashMap;
 
 public class Aviary<T extends Animal> {
-    private SizeAviary sizeAviary;
-    private final HashMap<String, T> mapAnimals = new HashMap<>();
+
+    int count;
+    private SizeAviary size;
+    private final HashMap<String, T> mapAnimals;
+    private String nameAnimal;
+
 
     public Aviary(SizeAviary sizeAviary) {
-        this.sizeAviary = sizeAviary;
+        count = 0;
+        mapAnimals = new HashMap<>();
+        this.size = sizeAviary;
     }
 
-    public Aviary() {
-        sizeAviary = sizeAviary.MEDIUM;
-    }
 
-    public void addAnimal(String name, T animal, SizeAviary sizeAviary) {
-        if (this.sizeAviary == sizeAviary) {
-            mapAnimals.put(name, animal);
+    public void addAnimal(T animal) {
+        if (animal.getSize() <= size.getSize() && count < size.getMaxAnimalCount()) {
+            if (mapAnimals.isEmpty()) {
+                nameAnimal = animal.getName();
+                mapAnimals.put(animal.getName(), animal);
+                count++;
+                return;
+            }
+            Animal an = mapAnimals.get(animal);
+            if (an instanceof Herbivore && animal instanceof Herbivore) {
+                mapAnimals.put(animal.getName(), animal);
+                count++;
+            } else if (an instanceof Carnivorous && animal instanceof Carnivorous) {
+                mapAnimals.put(animal.getName(), animal);
+                count++;
+            } else System.out.println("Разные типы");
+        } else {
+            System.out.println("Вальер полный");
         }
     }
 
@@ -27,16 +48,11 @@ public class Aviary<T extends Animal> {
 
     public void printAnimals() {
         for (String name : mapAnimals.keySet()) {
-            System.out.println(name + " " + getAnimal(name));
+            System.out.println(name + " " + get(name));
         }
     }
-    public T getAnimal(String name) {
+
+    public Animal get(String name) {
         return mapAnimals.get(name);
     }
-
-    public String getSizeAviary ()
-    {
-        return sizeAviary.name();
-    }
-
 }
