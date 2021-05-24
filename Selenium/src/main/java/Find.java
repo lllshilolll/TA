@@ -36,16 +36,15 @@ public class Find {
         WebElement webElement = driver.findElement(By.cssSelector("[data-marker='delivery-filter/input']"));
 
        if (!webElement.isSelected()) {
-            driver.findElement(By.cssSelector("[data-marker='delivery-filter/input']")).click();
-            driver.findElement(By.cssSelector("[data-marker='search-filters/submit-button']")).click();
+            driver.findElement(By.xpath("//span[@data-marker='delivery-filter/text']")).click();
+            driver.findElement(By.xpath("//button[@data-marker='search-filters/submit-button']")).click();
         }
-        Select select2 = new Select(driver.findElement(By.className("select-select-3CHiM")));
-        select2.selectByValue("2");
+        driver.findElement(By.xpath("//select[@data-marker='option(2)']")).click();
         int n = 3;
         ArrayList<WebElement> names = (ArrayList) driver.findElements(By.xpath("//h3[contains(@itemprop, 'name')]"));
         ArrayList<WebElement> prices = (ArrayList) driver.findElements(By.xpath("//span/span/meta[contains(@itemprop, 'price')][2]"));
         for (int i = 0; i < n; i++) {
-            System.out.println(names.get(i).getText() + "-" + prices.get(i).getText());
+            System.out.println(names.get(i).getText() + "-" + prices.get(i).getAttribute("content"));
         }
     }
 }
