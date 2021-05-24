@@ -1,6 +1,9 @@
+//import com.codeborne.selenide.Selenide;
+
+import io.qameta.allure.Attachment;
+import io.qameta.allure.Step;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -28,7 +31,7 @@ public class Find {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
-    @Test
+    @Step("open Avito")
     public void avito() {
         driver.get("https://www.avito.ru/");
     }
@@ -42,16 +45,19 @@ public class Find {
         select.selectByVisibleText("Оргтехника и расходники");
     }
 
+    @Step("Выбрать в списке 'категория' 'оргтехника и расходники'")
     public void findElement() {
         driver.findElement(By.cssSelector("#search")).click();
         driver.findElement(By.cssSelector("#search")).sendKeys("Принтер");
     }
 
+    @Step("Ввести город Владивосток")
     public void chooseCity() {
         driver.findElement(By.className("main-select-2pf7p")).click();
         driver.findElement(By.className("suggest-input-3p8yi")).sendKeys("Владивосток");
     }
 
+    @Step("Показать результаты")
     public void checkBox() {
 
         driver.findElement(By.cssSelector("[data-marker='suggest(0)']")).click();
@@ -64,10 +70,12 @@ public class Find {
          driver.findElement(By.xpath("//span[@data-marker='delivery-filter/text']")).click();
          driver.findElement(By.xpath("//button[@data-marker='search-filters/submit-button']")).click();
      }*/
+    @Step("Отсортировать по убыванию цены")
     public void price() {
         driver.findElement(By.xpath("//div[contains(@class, 'sort-select')]/select/option[@data-marker='option(2)']")).click();
     }
 
+    @Step("Вывести три самых дорогих принтера с ценой")
     public void listPrinter() {
         int n = 3;
         ArrayList<WebElement> names = (ArrayList) driver.findElements(By.xpath("//h3[contains(@itemprop, 'name')]"));
@@ -77,15 +85,6 @@ public class Find {
         }
     }
 
-    /**
-     * @Attachment(value="Screenshot", type="image/png")
-     * private static Screenshot captureScreenshot(WebDriver driver)
-     * {
-     * return new AShot()
-     * .shootingStrategy(ShootingStrategies.viewportPasting(100))
-     * .takeScreenshot(driver);
-     * }
-     */
     @After
     public void stop() {
         driver.quit();
