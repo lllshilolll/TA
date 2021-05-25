@@ -1,6 +1,3 @@
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,14 +8,16 @@ import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 public class Find {
-    private WebDriver driver;
+    WebDriver driver;
 
-    @Before
+    public Find(WebDriver driver) {
+        this.driver = driver;
+    }
+
     public void start() {
 
         System.setProperty("webdriver.chrome.driver", "C:\\Users\\Mariya\\Desktop\\chromedriver.exe");
-
-        WebDriver driver = new ChromeDriver();
+        //driver = new ChromeDriver();
         try {
             Thread.sleep(4_000);
         } catch (InterruptedException e) {
@@ -28,7 +27,6 @@ public class Find {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
-    @Test
     public void avito() {
         driver.get("https://www.avito.ru/");
     }
@@ -42,7 +40,7 @@ public class Find {
         select.selectByVisibleText("Оргтехника и расходники");
     }
 
-    public void findElement() {
+    public void findElem() {
         driver.findElement(By.cssSelector("#search")).click();
         driver.findElement(By.cssSelector("#search")).sendKeys("Принтер");
     }
@@ -77,7 +75,6 @@ public class Find {
         }
     }
 
-    @After
     public void stop() {
         driver.quit();
     }
