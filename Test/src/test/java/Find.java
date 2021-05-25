@@ -1,5 +1,4 @@
 //import com.codeborne.selenide.Selenide;
-
 import io.qameta.allure.Attachment;
 import io.qameta.allure.Step;
 import org.junit.After;
