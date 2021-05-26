@@ -16,22 +16,22 @@ import java.util.concurrent.TimeUnit;
 public class Find {
     WebDriver driver;
 
-  /*  public Find(WebDriver driver) {
+    public Find(WebDriver driver) {
         this.driver = driver;
-    }*/
+    }
 
     public void start() {
 
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\Mariya\\Desktop\\chromedriver.exe");
+        //System.setProperty("webdriver.chrome.driver", "C:\\Users\\Mariya\\Desktop\\chromedriver.exe");
 
-        driver = new ChromeDriver();
+        //driver = new ChromeDriver();
         try {
             Thread.sleep(4_000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
     }
 
     @Step("open Avito")
