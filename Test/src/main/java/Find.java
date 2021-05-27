@@ -1,7 +1,6 @@
 import io.qameta.allure.Attachment;
 import io.qameta.allure.Step;
 import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 import ru.yandex.qatools.ashot.AShot;
 import ru.yandex.qatools.ashot.Screenshot;
@@ -51,29 +50,32 @@ public class Find {
 
     @Step("Ввести 'Принтер'")
     public void findElem() {
-        driver.findElement(By.cssSelector("#search")).click();
-        driver.findElement(By.cssSelector("#search")).sendKeys("Принтер");
+        driver.findElement(By.cssSelector("[data-marker='search-form/suggest']")).click();
+        driver.findElement(By.cssSelector("[data-marker='search-form/suggest']")).sendKeys("Принтер");
     }
 
     @Step("Ввести город Владивосток")
     public void chooseCity() {
         driver.findElement(By.className("main-select-2pf7p")).click();
         driver.findElement(By.className("suggest-input-3p8yi")).sendKeys("Владивосток");
+        driver.findElement(By.cssSelector("[data-marker='suggest(0)']")).click();
     }
 
-    @Step("Показать результаты")
+    @Step("Показать объявления")
     public void checkBox() {
-
-        driver.findElement(By.cssSelector("[data-marker='suggest(0)']")).click();
         driver.findElement(By.className("popup-buttons-NqjQ3")).click();
     }
 
-    //    WebElement webElement = driver.findElement(By.cssSelector("[data-marker='delivery-filter/input']"));
+    @Step("Проверить, активирован ли чекбокс")
+    public void filter(){
+        WebElement webElement = driver.findElement(By.cssSelector("[data-marker='delivery-filter/input']"));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", webElement);
+        if(!webElement.isSelected()){
+            driver.findElement(By.xpath("//span[@data-marker='delivery-filter/text']")).click();
+            driver.findElement(By.xpath("//button[@data-marker='search-filters/submit-button']")).click();
+        }
+    }
 
-    /*if (!webElement.isSelected()) {
-         driver.findElement(By.xpath("//span[@data-marker='delivery-filter/text']")).click();
-         driver.findElement(By.xpath("//button[@data-marker='search-filters/submit-button']")).click();
-     }*/
     @Step("Отсортировать по убыванию цены")
     public void price() {
         driver.findElement(By.xpath("//div[contains(@class, 'sort-select')]/select/option[@data-marker='option(2)']")).click();
