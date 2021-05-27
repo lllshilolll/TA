@@ -1,7 +1,6 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.ArrayList;
@@ -16,7 +15,7 @@ public class Find {
 
     public void start() {
 
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\Mariya\\Desktop\\chromedriver.exe");
+        //System.setProperty("webdriver.chrome.driver", "C:\\Users\\Mariya\\Desktop\\chromedriver.exe");
         //driver = new ChromeDriver();
         try {
             Thread.sleep(4_000);
@@ -24,7 +23,7 @@ public class Find {
             e.printStackTrace();
         }
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
     }
 
     public void avito() {
@@ -41,8 +40,8 @@ public class Find {
     }
 
     public void findElem() {
-        driver.findElement(By.cssSelector("#search")).click();
-        driver.findElement(By.cssSelector("#search")).sendKeys("Принтер");
+        driver.findElement(By.cssSelector("[data-marker='search-form/suggest']")).click();
+        driver.findElement(By.cssSelector("[data-marker='search-form/suggest']")).sendKeys("Принтер");
     }
 
     public void chooseCity() {
