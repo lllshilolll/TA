@@ -19,6 +19,7 @@ public class TestFind {
         steps.findElem();
         steps.chooseCity();
         steps.checkBox();
+        steps.filter();
         steps.price();
         steps.listPrinter();
         steps.stop();

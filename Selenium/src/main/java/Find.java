@@ -1,4 +1,5 @@
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -54,13 +55,15 @@ public class Find {
         driver.findElement(By.cssSelector("[data-marker='suggest(0)']")).click();
         driver.findElement(By.className("popup-buttons-NqjQ3")).click();
     }
+    public void filter(){
+        WebElement webElement = driver.findElement(By.cssSelector("[data-marker='delivery-filter/input']"));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", webElement);
+        if(!webElement.isSelected()){
+            driver.findElement(By.xpath("//span[@data-marker='delivery-filter/text']")).click();
+            driver.findElement(By.xpath("//button[@data-marker='search-filters/submit-button']")).click();
+        }
+    }
 
-    //    WebElement webElement = driver.findElement(By.cssSelector("[data-marker='delivery-filter/input']"));
-
-    /*if (!webElement.isSelected()) {
-         driver.findElement(By.xpath("//span[@data-marker='delivery-filter/text']")).click();
-         driver.findElement(By.xpath("//button[@data-marker='search-filters/submit-button']")).click();
-     }*/
     public void price() {
         driver.findElement(By.xpath("//div[contains(@class, 'sort-select')]/select/option[@data-marker='option(2)']")).click();
     }
