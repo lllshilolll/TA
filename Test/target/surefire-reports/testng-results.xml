@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2021-05-27T20:06:22 TRT" name="Surefire suite" finished-at="2021-05-27T20:07:37 TRT" duration-ms="75295">
+    <groups>
+    </groups>
+    <test started-at="2021-05-27T20:06:22 TRT" name="Surefire test" finished-at="2021-05-27T20:07:37 TRT" duration-ms="75295">
+      <class name="TestFind">
+        <test-method signature="avitoTest()" started-at="2021-05-27T20:06:22 TRT" name="avitoTest" finished-at="2021-05-27T20:07:37 TRT" duration-ms="74923" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- avitoTest -->
+      </class> <!-- TestFind -->
+    </test> <!-- Surefire test -->
+  </suite> <!-- Surefire suite -->
+</testng-results>
