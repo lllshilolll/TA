@@ -1,11 +1,11 @@
-import org.junit.Before;
-import org.junit.Test;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
 
 public class TestFind {
     Find steps;
 
-    @Before
+    @BeforeTest
     public void setUp() throws Exception {
         System.setProperty("webdriver.chrome.driver", "C:\\Users\\Mariya\\Desktop\\chromedriver.exe");
         steps = new Find(new ChromeDriver());

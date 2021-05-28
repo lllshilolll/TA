@@ -41,17 +41,16 @@ public class Find {
     @Step("Выбрать в списке 'категория' 'оргтехника и расходники'")
     public void selectCategory() {
         Select select = new Select(driver.findElement(By.cssSelector("#category")));
-        // select.getOptions().forEach(webElement -> {
-        //    System.out.println(webElement.getText());
-        //  });
-
         select.selectByVisibleText("Оргтехника и расходники");
+        makeScreenShot();
     }
 
     @Step("Ввести 'Принтер'")
     public void findElem() {
         driver.findElement(By.cssSelector("[data-marker='search-form/suggest']")).click();
         driver.findElement(By.cssSelector("[data-marker='search-form/suggest']")).sendKeys("Принтер");
+        makeScreenShot();
+
     }
 
     @Step("Ввести город Владивосток")
@@ -64,6 +63,7 @@ public class Find {
     @Step("Показать объявления")
     public void checkBox() {
         driver.findElement(By.className("popup-buttons-NqjQ3")).click();
+        makeScreenShot();
     }
 
     @Step("Проверить, активирован ли чекбокс")
@@ -79,6 +79,7 @@ public class Find {
     @Step("Отсортировать по убыванию цены")
     public void price() {
         driver.findElement(By.xpath("//div[contains(@class, 'sort-select')]/select/option[@data-marker='option(2)']")).click();
+        makeScreenShot();
     }
 
     @Step("Вывести три самых дорогих принтера с ценой")
@@ -95,25 +96,6 @@ public class Find {
     @Step("Make screen shot of results page")
     public byte[] makeScreenShot() {
         return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-    }
-
-
-    @Attachment
-    @Step("Make screen shot of element on the page")
-    public byte[] makeAshotScreenShot() {
-        // Find the element to take a screenshot
-        WebElement element = driver.findElement(By.cssSelector("header.serp-header"));
-
-        // Along with driver pass element also in takeScreenshot() method.
-        Screenshot screenshot = new AShot().shootingStrategy(ShootingStrategies.viewportPasting(1000)).takeScreenshot(driver, element);
-
-        ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-        try {
-            ImageIO.write(screenshot.getImage(), "PNG", buffer);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return buffer.toByteArray();
     }
 
     public void stop() {
