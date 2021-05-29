@@ -43,10 +43,10 @@ public class Find {
 
     public void chooseCity() {
         driver.findElement(By.className("main-select-2pf7p")).click();
+        driver.findElement(By.className("suggest-input-3p8yi")).click();
     }
 
     public void nameCity(String name) {
-        driver.findElement(By.className("suggest-input-3p8yi")).click();
         driver.findElement(By.className("suggest-input-3p8yi")).sendKeys(name);
     }
 
