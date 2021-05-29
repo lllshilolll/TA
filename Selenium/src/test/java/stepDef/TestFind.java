@@ -1,12 +1,12 @@
 package stepDef;
 
 import classFind.Find;
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.cucumber.java.ParameterType;
 import io.cucumber.java.ru.И;
 import io.cucumber.java.ru.Пусть;
 import io.cucumber.java.ru.Тогда;
-import org.junit.After;
-import org.junit.Before;
 
 
 public class TestFind {
@@ -22,14 +22,14 @@ public class TestFind {
         return Price.valueOf(price);
     }
 
-    /**@Before
+    @Before
     public void setUp() {
         steps.start();
-    }*/
+    }
 
     @Пусть("открыт ресурс авито")
     public void avito() {
-        steps.start();
+        //steps.start();
         steps.avito();
     }
 

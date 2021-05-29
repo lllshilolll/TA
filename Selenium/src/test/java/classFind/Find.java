@@ -46,11 +46,12 @@ public class Find {
     }
 
     public void nameCity(String name) {
+        driver.findElement(By.className("suggest-input-3p8yi")).click();
         driver.findElement(By.className("suggest-input-3p8yi")).sendKeys(name);
-        driver.findElement(By.cssSelector("[data-marker='suggest(0)']")).click();
     }
 
     public void checkBox() {
+        driver.findElement(By.cssSelector("[data-marker='suggest(0)']")).click();
         driver.findElement(By.className("popup-buttons-NqjQ3")).click();
     }
 
