@@ -15,10 +15,12 @@ import java.util.HashMap;
 import java.util.Random;
 
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.CoreMatchers.equalTo;
 
 public class HomeTaskApiTest {
+
     @BeforeClass
-    public void prepare() throws IOException {
+    public void prepare() {
         RestAssured.requestSpecification = new RequestSpecBuilder()
                 .setBaseUri("https://petstore.swagger.io/v2/")
                 .addHeader("api_key", "api.key")
@@ -29,7 +31,18 @@ public class HomeTaskApiTest {
 
         RestAssured.filters(new ResponseLoggingFilter());
     }
-    
+
+    @Test
+    public void checkOrderCreation() {
+        Order order = new Order();
+        given()
+                .body(order)
+                .when()
+                .post("/store/order")
+                .then()
+                .statusCode(200);
+    }
+
     @Test
     public void checkObjectSave() {
         Order order = new Order(); // создаём экземпляр POJO объекта Pet
@@ -42,43 +55,42 @@ public class HomeTaskApiTest {
                 .when()
                 .post("/store/order")
                 .then()
-                .statusCode(200);
+                .statusCode(200)
+                .extract().body()
+                .as(Order.class);
 
-        Order actual =
-                given()
-                        .pathParam("orderId", id)
-                        .when()
-                        .get("/store/order/{orderId}")
-                        .then()
-                        .statusCode(200)
-                        .extract().body()
-                        .as(Order.class);
-        // TODO можно переопределить методы equals у объектов Pet и других, чтобы происходило корректное сравнение
-        Assert.assertEquals(actual.getShipDate(), order.getShipDate());
-
+        given()
+                .pathParam("orderId", order.getId())
+                .when()
+                .get("/store/order/{orderId}")
+                .then()
+                .statusCode(200)
+                .body("id", equalTo(order.getId()),
+                        "petId", equalTo(order.getPetId()));
     }
 
     @Test
-    public void tetDelete() throws IOException {
+    public void testDelete() throws IOException {
         Order order = new Order();
         int id = new Random().nextInt(500000);
         order.setId(id);
-
         given()
                 .body(order)
                 .when()
                 .post("/store/order")
                 .then()
-                .statusCode(200);
+                .statusCode(200)
+                .extract().body()
+                .as(Order.class);
 
         given()
-                .pathParam("orderId", id)
+                .pathParam("orderId", order.getId())
                 .when()
                 .delete("/store/order/{orderId}")
                 .then()
                 .statusCode(200);
         given()
-                .pathParam("orderId", id)
+                .pathParam("orderId", order.getId())
                 .when()
                 .get("/store/order/{orderId}")
                 .then()
