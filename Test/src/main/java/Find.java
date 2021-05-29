@@ -53,9 +53,14 @@ public class Find {
 
     }
 
-    @Step("Ввести город Владивосток")
+    @Step("Кликнуть по выпадающему списку региона")
     public void chooseCity() {
         driver.findElement(By.className("main-select-2pf7p")).click();
+        driver.findElement(By.className("suggest-input-3p8yi")).click();
+    }
+
+    @Step("Ввести город Владивосток")
+    public void nameCity() {
         driver.findElement(By.className("suggest-input-3p8yi")).sendKeys("Владивосток");
         driver.findElement(By.cssSelector("[data-marker='suggest(0)']")).click();
     }
@@ -67,10 +72,10 @@ public class Find {
     }
 
     @Step("Проверить, активирован ли чекбокс")
-    public void filter(){
+    public void filter() {
         WebElement webElement = driver.findElement(By.cssSelector("[data-marker='delivery-filter/input']"));
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", webElement);
-        if(!webElement.isSelected()){
+        if (!webElement.isSelected()) {
             driver.findElement(By.xpath("//span[@data-marker='delivery-filter/text']")).click();
             driver.findElement(By.xpath("//button[@data-marker='search-filters/submit-button']")).click();
         }

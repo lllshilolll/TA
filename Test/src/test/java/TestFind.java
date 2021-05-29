@@ -1,4 +1,5 @@
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -18,12 +19,16 @@ public class TestFind {
         steps.selectCategory();
         steps.findElem();
         steps.chooseCity();
+        steps.nameCity();
         steps.checkBox();
         steps.filter();
         steps.price();
         steps.listPrinter();
-        steps.stop();
     }
 
+    @AfterTest
+    public void setDown() {
+        steps.stop();
+    }
 }
 
