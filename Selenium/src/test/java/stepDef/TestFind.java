@@ -22,13 +22,14 @@ public class TestFind {
         return Price.valueOf(price);
     }
 
-    @Before
+    /**@Before
     public void setUp() {
         steps.start();
-    }
+    }*/
 
     @Пусть("открыт ресурс авито")
     public void avito() {
+        steps.start();
         steps.avito();
     }
 

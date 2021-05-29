@@ -4,7 +4,8 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = "src/test/java/resources",
+        publish = true,
+        features = "src/test/java/resources/",
         glue = "stepDef",
         tags = "@all")
 public class RunTest {
