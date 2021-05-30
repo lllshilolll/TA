@@ -1,7 +1,9 @@
 import io.qameta.allure.Attachment;
 import io.qameta.allure.Step;
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import ru.yandex.qatools.ashot.AShot;
 import ru.yandex.qatools.ashot.Screenshot;
 import ru.yandex.qatools.ashot.shooting.ShootingStrategies;
@@ -14,6 +16,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Find {
     WebDriver driver;
+    WebDriverWait wait;
 
     public Find(WebDriver driver) {
         this.driver = driver;
@@ -62,6 +65,10 @@ public class Find {
     @Step("Ввести город Владивосток")
     public void nameCity() {
         driver.findElement(By.className("suggest-input-3p8yi")).sendKeys("Владивосток");
+        wait = new WebDriverWait(driver, 1);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("Владивосток")));
+
+
         driver.findElement(By.cssSelector("[data-marker='suggest(0)']")).click();
     }
 
